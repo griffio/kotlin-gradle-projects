@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
             a.sort()
             b.sort()
             for (pair in a.zip(b.asIterable())) {
-                if (pair.first.equals(pair.second)) changes.minus()
+                if (pair.first.equals(pair.second)) changes --
             }
         }
 
