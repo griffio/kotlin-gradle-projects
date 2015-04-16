@@ -26,8 +26,21 @@ fun main(args: Array<String>) {
 
     }
 
+    fun three(input: String) {
+
+        val result = input.fold(linkedMapOf<Char, Int>(), {map, char ->
+            val count = map.getOrPut(char, {0})
+            map.put(char, count.plus(1))
+            map
+        })
+
+        println("result = ${result}")
+
+    }
+
     one("Mississippi")
 
     two("Mississippi")
 
+    three("Mississippi")
 }
