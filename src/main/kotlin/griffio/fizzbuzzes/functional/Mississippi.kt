@@ -5,6 +5,11 @@ import java.util.Collections
 
 fun main(args: Array<String>) {
 
+    fun MutableMap<Char, Int>.updateCounter(char: Char) : Unit{
+        val count = this.getOrPut(char, {0})
+        this.put(char, count.plus(1))
+    }
+
     fun one(input : String) {
 
         var result = linkedMapOf<Char, Int>()
@@ -29,9 +34,7 @@ fun main(args: Array<String>) {
     fun three(input: String) {
 
         val result = input.fold(linkedMapOf<Char, Int>(), {map, char ->
-            val count = map.getOrPut(char, {0})
-            map.put(char, count.plus(1))
-            map
+            return map.updateCounter(char)
         })
 
         println("result = ${result}")
