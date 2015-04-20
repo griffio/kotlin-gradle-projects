@@ -4,7 +4,7 @@ import java.util.Locale
 
 fun main(args: Array<String>) {
 
-    fun one(input: Array<String>) {
+    fun one(input: List<String>) {
 
         input filter { it.startsWith("a") } sortBy { it } map { it.toUpperCase(Locale.ROOT) } forEach {
             println(it)
@@ -12,6 +12,6 @@ fun main(args: Array<String>) {
 
     }
 
-    one(array("one", "two", "abc"))
+    one(arrayListOf("one", "two", "abc"))
 
 }
