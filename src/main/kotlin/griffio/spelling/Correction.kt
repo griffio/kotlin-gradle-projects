@@ -10,7 +10,6 @@ import com.google.common.collect.Multiset
 import java.io.File
 import java.util.HashSet
 import java.util.Locale
-
 // http://norvig.com/spell-correct.html
 fun main(args: Array<String>) {
 
@@ -23,11 +22,8 @@ fun main(args: Array<String>) {
         return HashMultiset.create(alphas.split(words))
     }
 
-    var wordsN = train(words("small.txt"))
+    var wordsN = train(words("big.txt"))
 
-    if (wordsN.contains("compiler")) println("compiler")
-
-    val word = "comiler"
     var alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     //    //splits     = [(word[:i], word[i:]) for i in range(len(word) + 1)]
@@ -46,16 +42,12 @@ fun main(args: Array<String>) {
         return edits1
     }
 
-    // println(edits1(word))
-
-    //return set(e2 for e1 in edits1(word) for e2 in edits1(e1) if e2 in NWORDS)
+    //set(e2 for e1 in edits1(word) for e2 in edits1(e1) if e2 in NWORDS)
     fun known_edits2(word: String): List<String> {
         return edits1(word).flatMapTo(arrayListOf<String>()) { e1 -> edits1(e1) filter { e2 -> wordsN.contains(e2) } map { e2 -> e2 } }
     }
 
-    println(known_edits2(word))
-
-    //    //def known(words): return set(w for w in words if w in NWORDS)
+    //set(w for w in words if w in NWORDS)
     fun known(words: List<String>): List<String> {
         return words filter { word -> wordsN.contains(word) }
     }
@@ -82,6 +74,6 @@ fun main(args: Array<String>) {
           return candidates.maxBy { wordsN.count(it) }.orEmpty()
     }
     
-    println(correct("clurk")) //clark
+    println(correct("clurk")) //clerk
 
 }
