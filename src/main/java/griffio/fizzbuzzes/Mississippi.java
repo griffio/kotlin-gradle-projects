@@ -1,5 +1,10 @@
 package griffio.fizzbuzzes;
 
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -20,6 +25,9 @@ public class Mississippi {
     Map<Character, Long> result = input.chars().mapToObj(c -> (char) c).collect(inputGroupingBy(c -> c, Collectors.counting()));
 
     System.out.println(result);
+
+    HashMultiset<Character> lettersFrequency = HashMultiset.create(Lists.charactersOf(input));
+    lettersFrequency.count("s");
 
   }
 
