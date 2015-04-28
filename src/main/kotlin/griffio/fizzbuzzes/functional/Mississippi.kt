@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
 
     fun two(input: String) {
 
-        val result = input.groupBy{it}.mapValues{it.getValue().size()}
+        val result = input groupBy{it} mapValues{it.getValue().size()}
 
         println("result = ${result}")
 

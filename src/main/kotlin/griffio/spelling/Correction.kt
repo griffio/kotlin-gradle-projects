@@ -10,6 +10,8 @@ import com.google.common.collect.Multiset
 import java.io.File
 import java.util.HashSet
 import java.util.Locale
+import java.util.Scanner
+
 // http://norvig.com/spell-correct.html
 fun main(args: Array<String>) {
 
@@ -70,7 +72,7 @@ fun main(args: Array<String>) {
           if (candidates.isEmpty()) {
               candidates = listOf(word)
           }
-
+          //find the candidate key that has the highest value
           return candidates.maxBy { wordsN.count(it) }.orEmpty()
     }
     
