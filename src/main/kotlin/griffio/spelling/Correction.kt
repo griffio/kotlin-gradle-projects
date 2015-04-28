@@ -15,6 +15,10 @@ import java.util.Scanner
 // http://norvig.com/spell-correct.html
 fun main(args: Array<String>) {
 
+    fun List<String>.or(a: List<String>): List<String> {
+        return if (this.isNotEmpty()) this else a
+    }
+
     fun words(resource: String): String {
         return Resources.asCharSource(Resources.getResource(resource), Charsets.UTF_8).read().toLowerCase(Locale.ROOT)
     }
@@ -54,28 +58,13 @@ fun main(args: Array<String>) {
         return words filter { word -> wordsN.contains(word) }
     }
 
-    fun correct(word: String) : String {
-
-   //     candidates = known([word]) or known(edits1(word)) or known_edits2(word) or [word]
-          var candidates = listOf(word)
-
-          candidates = known(candidates)
-
-          if (candidates.isEmpty()) {
-              candidates = known(edits1(word).toList())
-          }
-
-          if (candidates.isEmpty()) {
-              candidates = known_edits2(word)
-          }
-
-          if (candidates.isEmpty()) {
-              candidates = listOf(word)
-          }
-          //find the candidate key that has the highest value
-          return candidates.maxBy { wordsN.count(it) }.orEmpty()
+    //candidates = known([word]) or known(edits1(word)) or known_edits2(word) or [word]
+    fun correct(word: String): String {
+        var candidates = listOf(word)
+        candidates = known(candidates) or known(edits1(word).toList()) or known_edits2(word) or candidates
+        return candidates.maxBy { wordsN.count(it) }.orEmpty()
     }
-    
+
     println(correct("clurk")) //clerk
 
 }
