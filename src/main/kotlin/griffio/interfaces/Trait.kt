@@ -1,4 +1,4 @@
-package griffio.traits
+package griffio.interfaces
 
 fun main(args: Array<String>) {
 

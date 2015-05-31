@@ -1,6 +1,6 @@
-package griffio.traits
+package griffio.interfaces
 
-trait Similarity {
+interface Similarity {
     fun isSimilar(any: Any): Boolean
     fun isNotSimilar(any: Any): Boolean = !isSimilar(any)
 }

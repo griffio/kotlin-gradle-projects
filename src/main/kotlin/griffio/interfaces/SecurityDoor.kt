@@ -1,4 +1,4 @@
-package griffio.traits
+package griffio.interfaces
 
 class SecurityDoor(timer : Timer) : Doorway, Timer by timer {
 

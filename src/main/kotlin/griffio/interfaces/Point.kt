@@ -1,4 +1,4 @@
-package griffio.traits
+package griffio.interfaces
 
 class Point(val x: Int, val y: Int) : Similarity {
     

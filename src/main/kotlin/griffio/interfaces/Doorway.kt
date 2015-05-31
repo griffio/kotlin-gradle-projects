@@ -1,6 +1,6 @@
-package griffio.traits
+package griffio.interfaces
 
-public trait Doorway {
+public interface Doorway {
     fun isOpen() : Boolean
     fun isClosed() : Boolean = !isOpen()
 }
