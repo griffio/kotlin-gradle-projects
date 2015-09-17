@@ -6,12 +6,13 @@ fun main(args: Array<String>) {
 
     fun one(input: List<String>) {
 
-        input filter { it.startsWith("a") } sortBy { it } map { it.toUpperCase(Locale.ROOT) } forEach {
+        input filter { it.startsWith("a") } sortedBy { it }  map { it.toUpperCase(Locale.ROOT) } forEach {
             println(it)
         }
 
     }
-
-    one(arrayListOf("one", "two", "abc"))
+    //ABC
+    //CBA
+    one(arrayListOf("cba", "one", "two", "abc"))
 
 }
