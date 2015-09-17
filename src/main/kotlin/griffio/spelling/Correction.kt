@@ -2,18 +2,8 @@ package griffio.spelling
 
 import com.google.common.base.CharMatcher
 import com.google.common.base.Splitter
-import com.google.common.collect
 import com.google.common.collect.HashMultiset
-import com.google.common.io.Files
-import com.google.common.io.Resources
-import com.google.common.collect.Multiset
-import java.io.File
-import java.net.URI
 import java.net.URL
-import java.nio.file.Paths
-import java.util.HashSet
-import java.util.Locale
-import java.util.Scanner
 
 class Correction(var resource : String) {
 
