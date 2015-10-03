@@ -28,8 +28,8 @@ fun main(args: Array<String>) {
 class DoorCloseTimer(var id: Long) : Timer {
 
     override fun timerId(id: Long): Long {
-        val old = $id
-        $id = id
+        val old = id
+        this.id = id
         return old
     }
 

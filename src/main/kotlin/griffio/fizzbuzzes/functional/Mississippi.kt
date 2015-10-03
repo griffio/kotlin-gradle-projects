@@ -1,8 +1,5 @@
 package griffio.fizzbuzzes.functional
 
-import java.util
-import java.util.Collections
-
 fun main(args: Array<String>) {
 
     fun MutableMap<Char, Int>.updateCounter(char: Char) : Unit{
@@ -19,7 +16,7 @@ fun main(args: Array<String>) {
            result.put(char, count.plus(1))
         }
 
-        println("result = ${result}")
+        println("result = $result")
 
     }
 
@@ -27,7 +24,7 @@ fun main(args: Array<String>) {
 
         val result = input groupBy{it} mapValues{it.value.size()}
 
-        println("result = ${result}")
+        println("result = $result")
 
     }
 
@@ -37,7 +34,7 @@ fun main(args: Array<String>) {
             return map.updateCounter(char)
         })
 
-        println("result = ${result}")
+        println("result = $result")
 
     }
 

@@ -1,3 +1,3 @@
-package griffio.places
+package griffio.things
 
-data class X()
+data class X(val x: Int)
