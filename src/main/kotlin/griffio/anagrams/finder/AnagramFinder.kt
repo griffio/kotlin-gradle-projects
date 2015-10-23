@@ -15,23 +15,23 @@ fun main(args: Array<String>) {
 
     fun given_a_list_of_words_find_all_the_anagrams_in_the_order_in_which_they_appear(words: List<String>) {
 
-        val sortedWords = words map { it.toCharArray() }
+        val sortedWords = words.map { it.toCharArray() }
 
         sortedWords.forEach { it.sort() }
 
         val normalizedWords = sortedWords.map { String(it) }
 
-        val groupedWords = sortedWords groupBy { String(it) }
+        val groupedWords = sortedWords.groupBy { String(it) }
 
         println(
-            words zip normalizedWords filter { groupedWords.get(it.second)!!.size() > 1 } map { it.first }
+                words.zip(normalizedWords).filter { groupedWords[it.second]!!.size > 1 }.map { it.first }
         )
 
     }
 
     val words = arrayListOf("snow", "nets", "nest", "sent", "whatever", "tens", "bogus", "owns", "sown")
 
-    val groupedWords = words map { it.groupBy { it } }
+    val groupedWords = words.map { it.groupBy { it } }
 
     println (groupedWords)
 

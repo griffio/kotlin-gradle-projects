@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
 
 fun rank(k: Int, a: Array<Int>): Int {
     var l = 0
-    var h = a.size() - 1
+    var h = a.size - 1
     while (l <= h) {
         val m = l + (h - l) / 2
         val v = a[m]

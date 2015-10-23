@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     val inputString = input.next().trim()
 
     var startIndex = 0
-    var endIndex = inputString.length() -1
+    var endIndex = inputString.length -1
     val subject = inputString.toCharArray()
     while(startIndex < endIndex) {
         var swap = subject[startIndex]

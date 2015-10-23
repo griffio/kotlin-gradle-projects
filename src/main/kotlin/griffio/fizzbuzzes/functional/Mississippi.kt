@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
 
     fun two(input: String) {
 
-        val result = input groupBy{it} mapValues{it.value.size()}
+        val result = input.groupBy {it}.mapValues { it.value.size }
 
         println("result = $result")
 

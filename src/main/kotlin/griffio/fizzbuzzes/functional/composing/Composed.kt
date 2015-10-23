@@ -8,14 +8,12 @@ fun main(args: Array<String>) {
 
 fun isOdd(x: Int) = x % 2 != 0
 
-fun length(s: String) = s.length()
+fun length(s: String) = s.length
 
-fun compose<A, B, C>(f: (C) -> B, g: (A) -> C): (A) -> B {
+fun <A, B, C> compose(f: (C) -> B, g: (A) -> C): (A) -> B {
     return { x -> f(g(x)) }
 }
 
-fun composeToPredicate<String, Boolean, Int>(f: (Int) -> Boolean, g: (String) -> Int): (String) -> Boolean {
+fun <String, Boolean, Int> composeToPredicate(f: (Int) -> Boolean, g: (String) -> Int): (String) -> Boolean {
     return compose(f, g)
 }
-
-

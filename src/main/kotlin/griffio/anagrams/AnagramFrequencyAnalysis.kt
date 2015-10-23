@@ -1,7 +1,6 @@
 package griffio.anagrams
 
 import java.nio.charset.StandardCharsets
-import java.util.Arrays
 import java.util.Scanner
 
 fun main(args: Array<String>) {
@@ -17,8 +16,8 @@ fun main(args: Array<String>) {
 
         var changes: Int = -1
 
-        if (ab.length().mod(2) == 0) {
-            val partition = ab.length() / 2;
+        if (ab.length.mod(2) == 0) {
+            val partition = ab.length.div(2)
             changes = partition
             val a: CharArray = ab.substring(0, partition).toCharArray()
             val b: CharArray = ab.substring(partition).toCharArray()
