@@ -1,7 +1,5 @@
 package griffio.spelling
 
-import com.google.common.base.CharMatcher
-import com.google.common.base.Splitter
 import com.google.common.collect.HashMultiset
 import java.net.URL
 
@@ -24,8 +22,9 @@ class Correction(var resource : String) {
     }
 
     fun train(words: String): HashMultiset<String> {
-        val alphas = Splitter.on(CharMatcher.WHITESPACE).trimResults(CharMatcher.inRange('a', 'z').negate())
-        return HashMultiset.create(alphas.split(words))
+        //val alphas = Splitter.on(CharMatcher.WHITESPACE).trimResults(CharMatcher.inRange('a', 'z').negate())
+        val trainingSet = words.split(" ").filter { it.isNotEmpty() }.map { it.filter { it in 'a'..'z' } }
+        return HashMultiset.create(trainingSet)
     }
 
     //    //splits     = [(word[:i], word[i:]) for i in range(len(word) + 1)]
