@@ -1,11 +1,8 @@
 package griffio
 
-import com.google.common.base.CharMatcher
-import com.google.common.base.Splitter
 import kotlin.test.assertEquals
 import griffio.spelling.Correction
 import org.junit.Test
-import kotlin.text.Regex
 
 class CorrectionTest {
 
@@ -18,6 +15,5 @@ class CorrectionTest {
         val actual = Correction("/big.txt").correct("unifermity")
         assertEquals("uniformity", actual, "spelling correct")
     }
-
 
 }

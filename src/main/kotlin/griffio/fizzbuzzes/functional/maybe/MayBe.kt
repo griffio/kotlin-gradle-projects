@@ -3,10 +3,10 @@ package griffio.fizzbuzzes.functional.maybe
 fun main(args: Array<String>) {
 
     val j100 = Maybe.Just(100)
-    val (acutal) = j100
+    val (actual) = j100
 
     println(j100)
-    println(acutal)
+    println(actual)
 
 }
 
