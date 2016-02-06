@@ -36,7 +36,7 @@ class Correction(var resource : String) {
     fun edits1(word: String): Set<String> {
         var splits = IntRange(0, word.length).map { it -> Pair(word.take(it), word.drop(it)) }
         var edits1 = hashSetOf<String>()
-        splits.filter { it -> it.second.isNotEmpty() }.mapTo(edits1) { it -> it.first.concat(it.second.substring(1)) }
+        splits.filter { it -> it.second.isNotEmpty() }.mapTo(edits1) { it -> it.first + it.second.substring(1) }
         splits.filter { it -> it.second.length > 1 }.mapTo(edits1) { it -> it.first + it.second[1] + it.second[0] + it.second.substring(2) }
         alphabet.flatMapTo(edits1) { alpha -> splits.filter { it.second.isNotEmpty() }.map { it -> it.first + alpha + it.second.substring(1) } }
         alphabet.flatMapTo(edits1) { alpha -> splits.map { it -> it.first + alpha + it.second } }
