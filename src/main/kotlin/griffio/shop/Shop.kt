@@ -12,13 +12,13 @@ interface Offer {
     fun value(): Double
 }
 
-class Discount(val totalQuantity: Int, val unitPrice: Double, val offer: Offer) {
+open class Discount(val totalQuantity: Int, val unitPrice: Double, val offer: Offer) {
 
     val offerValue = offer.value()
 
     val discountedQuantity = totalQuantity.div(offerValue)
 
-    fun savings(): Double {
+    open fun savings(): Double {
         return unitPrice.times(discountedQuantity.toInt())
     }
 }

@@ -11,6 +11,18 @@ class DiscountTest {
         }
     }
 
+    val tenPercent: Offer = object : Offer {
+        override fun value(): Double {
+            return 10.0
+        }
+    }
+
+    class PercentDiscount(totalQuantity: Int, unitPrice: Double, offer: Offer) : Discount(totalQuantity, unitPrice, offer) {
+        override fun savings(): Double {
+            return unitPrice.times(discountedQuantity)
+        }
+    }
+
     @Test
     fun quantity_is_zero() {
         val discount = Discount(0, 2.00, threeForOne)
@@ -52,4 +64,12 @@ class DiscountTest {
         val savings = discount.savings()
         assertEquals(discount.unitPrice.times(2), savings, "discount is two units.")
     }
+
+    @Test
+    fun ten_percent() {
+        val discount = PercentDiscount(3, 1.99, tenPercent)
+        val savings = discount.savings()
+        assertEquals(discount.unitPrice.times(3).times(0.10), savings)
+    }
+
 }

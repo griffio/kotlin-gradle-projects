@@ -11,6 +11,12 @@ class ProductTest {
         }
     }
 
+    val tenPercent: Offer = object : Offer {
+        override fun value(): Double {
+            return 10.0
+        }
+    }
+
     val sumoTangerines = Product("Sumo Tangerines", 5.99, ProductSku("SKU-0947"))
 
     val plasticSpoons = Product("Plastic Spoons", 7.99, ProductSku("SKU-1002"))
@@ -32,5 +38,14 @@ class ProductTest {
 
         assertEquals(aloeVera.price, savingsByReduce)
     }
+
+    @Test
+    fun ten_percent_off_savings() {
+
+        val basket = listOf(aloeVera, aloeVera, aloeVera)
+
+        val savingsBySum = DiscountTest.PercentDiscount(basket.size, aloeVera.price, tenPercent).savings()
+
+        assertEquals(aloeVera.price.times(basket.size) * 0.10, savingsBySum)
     }
 }
