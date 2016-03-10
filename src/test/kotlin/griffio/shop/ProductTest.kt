@@ -22,8 +22,15 @@ class ProductTest {
 
         val basket = listOf(sumoTangerines, plasticSpoons, aloeVera, aloeVera, aloeVera).groupBy { it }
 
-        val savings = basket.map { Discount(it.value.size, it.key.price, threeForOne).savings() }.reduce { total, saving  -> total.plus(saving) }
+        // two ways to create total savings
 
-        assertEquals(aloeVera.price, savings)
+        val savingsBySum = basket.map { Discount(it.value.size, it.key.price, threeForOne).savings() }.sumByDouble { it }
+
+        val savingsByReduce = basket.map { Discount(it.value.size, it.key.price, threeForOne).savings() }.reduce { total, saving  -> total.plus(saving) }
+
+        assertEquals(aloeVera.price, savingsBySum)
+
+        assertEquals(aloeVera.price, savingsByReduce)
+    }
     }
 }
