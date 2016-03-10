@@ -1,5 +1,7 @@
 package griffio.shop
 
+
+
 interface Shop {
     fun checkout(order: Order) {
         order.lines

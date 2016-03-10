@@ -3,7 +3,7 @@ package griffio.shop
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class TestShop {
+class ShopTest {
     @Test
     fun buy_three_for_two() {
 
