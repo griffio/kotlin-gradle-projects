@@ -23,6 +23,13 @@ class DiscountTest {
         }
     }
 
+    class ConditionalDiscount(var selector: () -> Boolean, totalQuantity: Int, unitPrice: Double, offer: Offer) : Discount(totalQuantity, unitPrice, offer) {
+        override fun savings(): Double {
+            if (selector()) return unitPrice.times(discountedQuantity)
+            return 0.0
+        }
+    }
+
     @Test
     fun quantity_is_zero() {
         val discount = Discount(0, 2.00, threeForOne)

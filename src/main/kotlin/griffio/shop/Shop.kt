@@ -1,12 +1,8 @@
 package griffio.shop
 
+data class Shop(var order: Order)
 
-
-interface Shop {
-    fun checkout(order: Order) {
-        order.lines
-    }
-}
+fun order(vararg products: Product) = Order(products.toList())
 
 interface Offer {
     fun value(): Double
@@ -23,9 +19,11 @@ open class Discount(val totalQuantity: Int, val unitPrice: Double, val offer: Of
     }
 }
 
-fun Shop.getTotalOrderPrice(order: Order): Double = order.lines.sumByDouble { it.product.price.times(it.product.price) }
+fun Shop.getTotalOrderBalance(): Double = order.products.sumByDouble { it.price }
 
-data class Order(val lines: List<OrderLine>)
+fun Shop.applyDiscounts(discounts: Set<Discount>): Double = discounts.sumByDouble { it.savings() }
+
+data class Order(val products: List<Product>)
 
 data class OrderLine(val product: Product, val quantity: Int)
 
