@@ -2,26 +2,25 @@ package griffio.shop
 
 data class Shop(var order: Order)
 
+data class Savings(val offer: Offer, val discount: Discount, val sum: Double = 0.0) {
+    fun accumulate(sum: Double): Savings {
+        return this
+    }
+}
+
 fun order(vararg products: Product) = Order(products.toList())
 
 interface Offer {
     fun value(): Double
 }
 
-open class Discount(val totalQuantity: Int, val unitPrice: Double, val offer: Offer) {
-
-    val offerValue = offer.value()
-
-    val discountedQuantity = totalQuantity.div(offerValue)
-
-    open fun savings(): Double {
-        return unitPrice.times(discountedQuantity.toInt())
-    }
+interface Discount {
+    fun savings(totalQuantity: Int, unitPrice: Double, offer: Offer): Double
 }
 
 fun Shop.getTotalOrderBalance(): Double = order.products.sumByDouble { it.price }
 
-fun Shop.applyDiscounts(discounts: Set<Discount>): Double = discounts.sumByDouble { it.savings() }
+fun Shop.applyDiscounts(discounts: Set<Discount>): Double = discounts.sumByDouble { return 0.0 }
 
 data class Order(val products: List<Product>)
 

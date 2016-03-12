@@ -32,9 +32,11 @@ class ProductTest {
 
         // two ways to create total savings
 
-        val savingsBySum = basket.map { Discount(it.value.size, it.key.price, threeForOne).savings() }.sumByDouble { it }
+        var multiBuyDiscount = DiscountTest.MultiBuyDiscount()
 
-        val savingsByReduce = basket.map { Discount(it.value.size, it.key.price, threeForOne).savings() }.reduce { total, saving -> total.plus(saving) }
+        val savingsBySum = basket.map { multiBuyDiscount.savings(it.value.size, it.key.price, threeForOne) }.sumByDouble { it }
+
+        val savingsByReduce = basket.map { multiBuyDiscount.savings(it.value.size, it.key.price, threeForOne) }.reduce { total, saving -> total.plus(saving) }
 
         assertEquals(String.format("%.2f.%n", aloeVera.price.plus(sumoTangerines.price)), String.format("%.2f.%n", savingsBySum))
 
@@ -46,7 +48,9 @@ class ProductTest {
 
         val basket = listOf(aloeVera, aloeVera, aloeVera)
 
-        val savingsBySum = DiscountTest.PercentDiscount(basket.size, aloeVera.price, tenPercent).savings()
+        var percentDiscount = DiscountTest.PercentDiscount()
+
+        val savingsBySum = percentDiscount.savings(basket.size, aloeVera.price, tenPercent)
 
         assertEquals(String.format("%.2f.%n", aloeVera.price.times(basket.size) * 0.10), String.format("%.2f.%n", savingsBySum))
     }
@@ -58,7 +62,9 @@ class ProductTest {
 
         val total = basket.sumByDouble { it.price }
 
-        val savingsBySum = DiscountTest.ConditionalDiscount({ total > 15.0 }, basket.size, total / basket.size, tenPercent).savings()
+        var conditionalDiscount = DiscountTest.ConditionalDiscount({ total > 15.0 })
+
+        val savingsBySum = conditionalDiscount.savings(basket.size, total / basket.size, tenPercent)
 
         assertEquals(String.format("%.2f.%n", total * 0.10), String.format("%.2f.%n", savingsBySum))
     }
