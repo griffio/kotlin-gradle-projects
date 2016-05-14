@@ -15,4 +15,5 @@ class PathTest {
         val userPreferences = dataPath / "user" / "preferences.json"
         assertEquals("/data/user/preferences.json", userPreferences.toString())
     }
+
 }
