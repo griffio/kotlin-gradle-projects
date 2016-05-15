@@ -4,8 +4,14 @@ import org.junit.Test
 import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.test.assertEquals
-
+/**
+ * Some infix operators
+ */
 class PathTest {
+
+    infix fun Any.equals(expected: Any) {
+        assertEquals(expected, this)
+    }
 
     infix operator fun Path.div(arg: String) = this.resolve(arg)
 
@@ -13,7 +19,6 @@ class PathTest {
     fun `resolves the path to user preferences`() {
         val dataPath = Paths.get("/data")
         val userPreferences = dataPath / "user" / "preferences.json"
-        assertEquals("/data/user/preferences.json", userPreferences.toString())
+        "/data/user/preferences.json" equals userPreferences.toString()
     }
-
 }
