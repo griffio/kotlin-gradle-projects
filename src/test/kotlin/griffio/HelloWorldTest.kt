@@ -10,23 +10,20 @@ class HelloWorldTest {
     }
 
     fun hello(name: String?): String {
-        val output = if (name.isNullOrEmpty()) "World" else name
+        val output = if (name?.trim().isNullOrEmpty()) "World" else name?.trim()
         return "Hello, $output!"
     }
 
     @Test
-    fun helloNoName() {
-        "Hello, World!" equals hello("")
+    fun `null, empty, whitespace input must return hello world`() {
         "Hello, World!" equals hello(null)
+        "Hello, World!" equals hello("")
+        "Hello, World!" equals hello(" ")
     }
 
     @Test
-    fun helloSampleName() {
+    fun `input must return hello input`() {
         "Hello, Alice!" equals hello("Alice")
-    }
-
-    @Test
-    fun helloAnotherSampleName() {
-        "Hello, Bob!" equals hello("Bob")
+        "Hello, Alice!" equals hello(" Alice ")
     }
 }
