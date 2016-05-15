@@ -34,7 +34,7 @@ class ShopTest {
     @Test
     fun order_balance() {
 
-        var expected = listOf(sumoTangerines, aloeVera, plasticSpoons, lobsterMacCheese).sumByDouble { it.price }
+        val expected = listOf(sumoTangerines, aloeVera, plasticSpoons, lobsterMacCheese).sumByDouble { it.price }
 
         val shopping = Shop(order)
 
