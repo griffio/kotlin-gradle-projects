@@ -26,4 +26,13 @@ class HelloWorldTest {
         "Hello, Alice!" equals hello("Alice")
         "Hello, Alice!" equals hello(" Alice ")
     }
+
+    @Test
+    fun `ohms law`() {
+        val V = 1.5
+        val A = 0.01
+        val ᘯ = V / A
+
+        ᘯ equals 150
+    }
 }
