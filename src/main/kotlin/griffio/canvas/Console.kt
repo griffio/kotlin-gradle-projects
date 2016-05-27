@@ -1,7 +1,8 @@
 package griffio.canvas
 
 import java.io.InputStream
-import java.util.*
+import java.util.Scanner
+import java.util.InputMismatchException
 import kotlin.system.exitProcess
 
 class ConsoleException(message: String?) : Exception(message)
