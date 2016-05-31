@@ -38,7 +38,7 @@ class CanvasContext(val height: Int, val width: Int) {
                 || y == 0
                 || x > width
                 || y > height
-                || canvas[y][x] > ' ')
+                || canvas[y][x].isLetterOrDigit())
     }
 
     fun fill(x: Int, y: Int, stroke: Char) {

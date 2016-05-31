@@ -4,6 +4,11 @@ import java.io.InputStream
 import java.util.*
 import kotlin.system.exitProcess
 
+sealed class ConsoleResult<out T> {
+    class Ok<T>(val value: T) : ConsoleResult<T>()
+    class Error(val error: String) : ConsoleResult<Nothing>()
+}
+
 class ConsoleException(message: String?) : Exception(message)
 
 class Console(stroke: Char = 'x') {
