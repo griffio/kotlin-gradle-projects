@@ -80,9 +80,9 @@ class DiscountTest {
     @Test
     fun quantity_is_three() {
 
-        var expected = unitPrice
+        val expected = unitPrice
 
-        val actual = discount.savings(2, 2.00, threeForOne)
+        val actual = discount.savings(3, 2.00, threeForOne)
 
         assertEquals(expected, actual, "discount is one unit.")
     }

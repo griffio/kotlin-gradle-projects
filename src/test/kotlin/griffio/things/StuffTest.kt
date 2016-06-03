@@ -12,7 +12,7 @@ class StuffTest {
 
     @Test
     fun `rect`() {
-        val r = Rectangle(Point(180, 60), Point(220, 40))
+        val r = Rectangle(Point(180, 40), Point(220, 60))
 
         val c = Coordinate(1, 1)
 
@@ -32,6 +32,6 @@ class StuffTest {
     @Test
     fun `line`() {
         val l = Line(Point(1, 2), Point(1, 4))
-        val r = Rectangle(Point(1, 2), Point(1, 4))
+        val r = Rectangle(Point(16, 1), Point(20, 3))
     }
 }

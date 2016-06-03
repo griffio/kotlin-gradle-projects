@@ -33,6 +33,6 @@ class HelloWorldTest {
         val A = 0.01
         val ᘯ = V / A
 
-        ᘯ equals 150
+        ᘯ equals 150.0
     }
 }
