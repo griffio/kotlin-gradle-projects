@@ -1,6 +1,7 @@
 package griffio.howto
 
 import org.junit.Test
+import kotlin.test.assertTrue
 
 class ListTests {
 
@@ -15,5 +16,11 @@ class ListTests {
         val words = listOf<String>()
         val a = arrayListOf("A", "B", "C").apply { add("D") }
         a.forEach { println (it) }
+    }
+
+    @Test
+    fun `How can I create an empty sequence` () {
+        assertTrue(emptySequence<String>().toList().isEmpty())
+        assertTrue(sequenceOf<String>().toList().isEmpty())
     }
 }
