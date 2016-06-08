@@ -35,4 +35,15 @@ class HelloWorldTest {
 
         ᘯ equals 150.0
     }
+
+    @Test
+    fun `curried function`() {
+        val hello = greetCurried("Hello")
+        hello("Bob")
+        hello("Jane")
+    }
+
+    fun greetCurried(greet: String) = fun(name: String): String {
+        return "$greet $name"
+    }
 }
