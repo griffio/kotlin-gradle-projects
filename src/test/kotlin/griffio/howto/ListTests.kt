@@ -7,6 +7,13 @@ import kotlin.test.assertTrue
 class ListTests {
 
     @Test
+    fun `how can I create a new list and assign it to a variable?`() {
+        var listOfInt = listOf(1, 2, 3) // immutable list
+        listOfInt += 4 // + operator creates a new list and assigns it to var
+        assertTrue(listOfInt.sum() == 1 + 2 + 3 + 4)
+    }
+
+    @Test
     fun `How can I view multiple collections as a single collection?`() {
         val a = listOf("A", "B", "C").asSequence() + listOf("D", "E", "F")
         a.forEach { println (it) }
