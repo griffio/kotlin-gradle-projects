@@ -1,10 +1,36 @@
 package griffio.howto
 
 import org.junit.Test
+import java.util.*
+import java.util.function.Supplier
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class ListTests {
+
+    interface Supplying {
+        fun search():Supplier<out List<String>> {
+            return Supplier { (listOf("A", "B", "C")) }
+        }
+    }
+
+    class SupplyingLinkedList: Supplying {
+        override fun search(): Supplier<LinkedList<String>> {
+            return Supplier { LinkedList (listOf("X", "Y", "Z")) }
+        }
+    }
+
+    @Test
+    fun `how do I initialise a list with values`() {
+        val list: List<Int> = (0..5).map { 100 + it }
+        assertEquals(list, listOf(100, 101, 102, 103, 104, 105))
+    }
+
+    @Test
+    fun `how can I use sub-classes of List`() {
+        val search = SupplyingLinkedList().search()
+        assertEquals(listOf("X", "Y", "Z"), search.get())
+    }
 
     @Test
     fun `how can I create a new list and assign it to a variable?`() {
