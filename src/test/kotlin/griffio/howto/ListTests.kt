@@ -9,12 +9,12 @@ import kotlin.test.assertTrue
 class ListTests {
 
     interface Supplying {
-        fun search():Supplier<out List<String>> {
+        fun search(): Supplier<out List<String>> {
             return Supplier { (listOf("A", "B", "C")) }
         }
     }
 
-    class SupplyingLinkedList: Supplying {
+    class SupplyingLinkedList : Supplying {
         override fun search(): Supplier<LinkedList<String>> {
             return Supplier { LinkedList (listOf("X", "Y", "Z")) }
         }
@@ -93,5 +93,30 @@ class ListTests {
                 else -> result + sequenceOf(element)
             }
         })
+    }
+
+    fun anyFlattening(rootList: List<Any>): List<Any> {
+
+        val q = mutableListOf<List<*>>()
+
+        val r = mutableListOf<Any>()
+
+        q.add(rootList)
+
+        while (q.isNotEmpty()) {
+
+            val anyList = q.first()
+
+            q.remove(anyList)
+
+            anyList.forEach { it ->
+                when (it) {
+                    is List<*> -> q.add(it)
+                    else -> r.add(it!!)
+                }
+            }
+        }
+
+        return r
     }
 }
