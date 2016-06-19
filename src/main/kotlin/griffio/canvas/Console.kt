@@ -13,7 +13,10 @@ class ConsoleException(message: String?) : Exception(message)
 
 class Console(val stroke: Char = 'x') {
 
-    lateinit var canvas: CanvasContext
+    private var _canvas: CanvasContext? = null
+
+    private val canvas: CanvasContext
+        get() = _canvas ?: help()
 
     fun input(stream: InputStream) {
 
@@ -22,7 +25,7 @@ class Console(val stroke: Char = 'x') {
         when (scan.next()) {
 
             "canvas" -> {
-                canvas = try {
+                _canvas = try {
                     CanvasContext(width = scan.nextInt(), height = scan.nextInt())
                 } catch (e: InputMismatchException) {
                     throw ConsoleException("canvas [width] [height]")
@@ -42,11 +45,7 @@ class Console(val stroke: Char = 'x') {
                     throw ConsoleException("line x1 y1 [x2 y2]")
                 }
 
-                try {
-                    canvas.draw(Line(left, right), stroke)
-                } catch(e: UninitializedPropertyAccessException) {
-                    help()
-                }
+                canvas.draw(Line(left, right), stroke)
             }
 
             "rect" -> {
@@ -54,12 +53,12 @@ class Console(val stroke: Char = 'x') {
                 val left: Point = try {
                     Point(scan.nextInt(), scan.nextInt())
                 } catch (e: InputMismatchException) {
-                    throw ConsoleException("rectangle [left top] right bottom")
+                    throw ConsoleException("invalid point -> [left top] right bottom")
                 }
                 val right: Point = try {
                     Point(scan.nextInt(), scan.nextInt())
                 } catch (e: InputMismatchException) {
-                    throw ConsoleException("rectangle left top [right bottom]")
+                    throw ConsoleException("left top [right bottom] <-invalid point")
                 }
                 try {
                     canvas.draw(Rectangle(left, right), stroke)
@@ -94,10 +93,9 @@ class Console(val stroke: Char = 'x') {
         println(canvas.render())
     }
 
-}
-
-fun help(): CanvasContext {
-    throw ConsoleException("type: canvas [width] [height] or quit")
+    fun help(): CanvasContext {
+        throw ConsoleException("type: canvas [width] [height] or quit")
+    }
 }
 
 fun main(args: Array<String>) {
