@@ -11,13 +11,7 @@ sealed class ConsoleResult<out T> {
 
 class ConsoleException(message: String?) : Exception(message)
 
-class Console(stroke: Char = 'x') {
-
-    var stroke: Char = stroke
-        set(value) {
-            if (value == ' ') throw IllegalArgumentException("")
-            field = value
-        }
+class Console(val stroke: Char = 'x') {
 
     lateinit var canvas: CanvasContext
 
@@ -28,7 +22,6 @@ class Console(stroke: Char = 'x') {
         when (scan.next()) {
 
             "canvas" -> {
-
                 canvas = try {
                     CanvasContext(width = scan.nextInt(), height = scan.nextInt())
                 } catch (e: InputMismatchException) {
@@ -54,7 +47,6 @@ class Console(stroke: Char = 'x') {
                 } catch(e: UninitializedPropertyAccessException) {
                     help()
                 }
-
             }
 
             "rect" -> {
@@ -69,13 +61,11 @@ class Console(stroke: Char = 'x') {
                 } catch (e: InputMismatchException) {
                     throw ConsoleException("rectangle left top [right bottom]")
                 }
-
                 try {
                     canvas.draw(Rectangle(left, right), stroke)
                 } catch(e: UninitializedPropertyAccessException) {
                     help()
                 }
-
             }
 
             "fill" -> {
@@ -92,11 +82,7 @@ class Console(stroke: Char = 'x') {
                     throw ConsoleException("fill x y [filling]")
                 }
 
-                try {
-                    canvas.fill(point, filler[0])
-                } catch(e: UninitializedPropertyAccessException) {
-                    help()
-                }
+                canvas.fill(point, filler[0])
             }
 
             "quit" -> {
@@ -108,9 +94,10 @@ class Console(stroke: Char = 'x') {
         println(canvas.render())
     }
 
-    fun help() {
-        throw ConsoleException("type: canvas [width] [height] or quit")
-    }
+}
+
+fun help(): CanvasContext {
+    throw ConsoleException("type: canvas [width] [height] or quit")
 }
 
 fun main(args: Array<String>) {
