@@ -15,8 +15,9 @@ class Console(val stroke: Char = 'x') {
 
     private var _canvas: CanvasContext? = null
 
-    private val canvas: CanvasContext
+    var canvas: CanvasContext
         get() = _canvas ?: help()
+        set(value) {_canvas = value}
 
     fun input(stream: InputStream) {
 
@@ -25,7 +26,7 @@ class Console(val stroke: Char = 'x') {
         when (scan.next()) {
 
             "canvas" -> {
-                _canvas = try {
+                canvas = try {
                     CanvasContext(width = scan.nextInt(), height = scan.nextInt())
                 } catch (e: InputMismatchException) {
                     throw ConsoleException("canvas [width] [height]")
