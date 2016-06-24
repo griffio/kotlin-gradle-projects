@@ -13,7 +13,6 @@ class RailRoadPatternKtTest {
     fun `email and name must not be blank`() {
 
         val given = Request(email = "hamilton@example.com", name = "Hamilton")
-
         val actual = validateInput(given)
 
         when (actual) {
@@ -26,7 +25,6 @@ class RailRoadPatternKtTest {
     fun `name must not be blank`() {
 
         val given = Request(email = "hamilton@example.com", name = "")
-
         val actual = validateInput(given)
 
         when (actual) {
@@ -39,7 +37,6 @@ class RailRoadPatternKtTest {
     fun `email must not be blank`() {
 
         val given = Request(email = "", name = "Hamilton")
-
         val actual = validateInput(given)
 
         when (actual) {
