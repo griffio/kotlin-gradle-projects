@@ -13,7 +13,7 @@ class RailRoadPatternKtTest {
     fun `email and name must not be blank`() {
 
         val given = Request(email = "hamilton@example.com", name = "Hamilton")
-        val actual = validateInput(given)
+        val actual = bind(emailCheck, nameCheck(given))
 
         when (actual) {
             is Result.Success<Request> -> actual.value equals given
@@ -25,7 +25,7 @@ class RailRoadPatternKtTest {
     fun `name must not be blank`() {
 
         val given = Request(email = "hamilton@example.com", name = "")
-        val actual = validateInput(given)
+        val actual = bind(nameCheck, emailCheck(given))
 
         when (actual) {
             is Result.Failure<String> -> actual equals nameBlank
@@ -37,7 +37,7 @@ class RailRoadPatternKtTest {
     fun `email must not be blank`() {
 
         val given = Request(email = "", name = "Hamilton")
-        val actual = validateInput(given)
+        val actual = bind(nameCheck, emailCheck(given))
 
         when (actual) {
             is Result.Failure<String> -> actual equals emailBlank
