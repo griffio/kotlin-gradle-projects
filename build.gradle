@@ -4,6 +4,9 @@ plugins {
 
 repositories {
   mavenCentral()
+  maven {
+    url "http://repository.jetbrains.com/all"
+  }
 }
 
 dependencies {
@@ -12,5 +15,6 @@ dependencies {
       "com.google.guava:guava:18.0")
   testCompile(
       "junit:junit:4.12",
-      "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}")
+      "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+      "org.jetbrains.spek:spek:+") //grab latest version of spek
 }
