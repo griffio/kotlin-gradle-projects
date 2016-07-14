@@ -1,6 +1,11 @@
 package griffio.things
 
-data class Pizza(val pizza: PizzaSize)
+// extra fields are not included in hashcode/equals
+
+data class Pizza(val pizza: PizzaSize) {
+    val description: String = "This is a %s pizza"
+        get() = field.format(pizza)
+}
 
 enum class PizzaSize {
     SMALL,
@@ -8,8 +13,8 @@ enum class PizzaSize {
     LARGE
 }
 
-fun slicesToSize(slices: Int):Pizza {
-    val size = when(slices) {
+fun slicesToSize(slices: Int): Pizza {
+    val size = when (slices) {
         in 1..4 -> PizzaSize.SMALL
         in 5..8 -> PizzaSize.MEDIUM
         in 9..12 -> PizzaSize.LARGE
