@@ -34,3 +34,10 @@ fun getStringLength(obj: Any): Int? {
         return obj.length
     return null
 }
+
+abstract class Brick(size: Int, parent: Brick? = null) {
+    val parent = parent ?: this
+}
+
+val b = object:Brick(10) {
+}
