@@ -5,6 +5,10 @@ package griffio.things
 data class Pizza(val pizza: PizzaSize) {
     val description: String = "This is a %s pizza"
         get() = field.format(pizza)
+
+    companion object {
+        @JvmField val serialVersionUID: Long = 42L
+    }
 }
 
 enum class PizzaSize {
