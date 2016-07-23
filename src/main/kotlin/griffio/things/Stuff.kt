@@ -19,7 +19,6 @@ open class Box<T>(t: T) {
 }
 
 
-
 val word = Box<String>("Word")
 val number = Box<Int>(1234)
 
@@ -39,5 +38,11 @@ abstract class Brick(size: Int, parent: Brick? = null) {
     val parent = parent ?: this
 }
 
-val b = object:Brick(10) {
+val b = object : Brick(10) {
 }
+
+val immutableMap: Map<String, String> = mapOf(
+        "A" to "0",
+        "B" to "1",
+        "C" to "2"
+)
