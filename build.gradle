@@ -1,5 +1,6 @@
 plugins {
   id 'nebula.kotlin' version '1.0.3'
+  id "info.solidsoft.pitest" version "1.1.4"
 }
 
 repositories {
@@ -7,6 +8,14 @@ repositories {
   maven {
     url "http://repository.jetbrains.com/all"
   }
+}
+
+pitest {
+  targetClasses = ["griffio.things.Greeter"]
+  targetTests = ["griffio.things.PitTests"]
+  threads = 2
+  outputFormats = ['XML', 'HTML']
+  mutators = ['CONSTRUCTOR_CALLS', 'REMOVE_CONDITIONALS']
 }
 
 dependencies {
