@@ -18,3 +18,4 @@ fun add() {
     val person = Person("hello", "world").parent("a").parent("aa")
 }
 
+fun Person.println() : Person = this.apply { println(this) }
