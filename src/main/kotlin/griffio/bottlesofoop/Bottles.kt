@@ -24,16 +24,16 @@ fun main(args: Array<String>) {
 
 class Bottles1d {
 
-  fun song() = verses(99, 0)
+  fun song() = verses(99 downTo 0)
 
-  fun verses(starting: Int, ending: Int) = (starting downTo ending).map { i -> verse(i).trimIndent() }.joinToString("\n")
+  fun verses(range: IntProgression) = range.map{ i -> verse(i, range).trimIndent() }.joinToString("\n")
 
-  fun verse(number: Int) = when (number) {
+  fun verse(step: Int, range: IntProgression) = when (step) {
     0 -> """
           No more bottles of beer on the wall,
           no more bottles of beer.
           Go to the store and buy some more,
-          99 bottles of beer on the wall.
+          ${range.first} bottles of beer on the wall.
           """
     1 -> """
           1 bottle of beer on the wall,
@@ -48,10 +48,10 @@ class Bottles1d {
           1 bottle of beer on the wall.
           """
     else -> """
-       $number bottles of beer on the wall,
-       $number bottles of beer.
+       $step bottles of beer on the wall,
+       $step bottles of beer.
        Take one down and pass it around,
-       ${number - 1} bottles of beer on the wall.
+       ${step - 1} bottles of beer on the wall.
        """
   }
 }
